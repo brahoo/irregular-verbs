@@ -3,3 +3,7 @@
 
 # Maven #
 target/
+
+# Persistence files #
+irregularverbs.db
+irregularverbs.txt

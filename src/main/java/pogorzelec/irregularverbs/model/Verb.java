@@ -1,12 +1,25 @@
 package pogorzelec.irregularverbs.model;
 
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.Id;
 import java.util.Objects;
 
+@Entity
 public class Verb {
 
+    @Id
+    @Column(name = "first_form")
     private String firstForm;
+
+    @Column(name = "second_form")
     private String secondForm;
+
+    @Column(name = "third_form")
     private String thirdForm;
+
+    public Verb() {
+    }
 
     public Verb(String firstForm, String secondForm, String thirdForm) {
         this.firstForm = firstForm;
