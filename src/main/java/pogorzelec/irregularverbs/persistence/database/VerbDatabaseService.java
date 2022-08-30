@@ -1,10 +1,12 @@
 package pogorzelec.irregularverbs.persistence.database;
 
 import org.hibernate.Transaction;
+import org.springframework.stereotype.Component;
 import pogorzelec.irregularverbs.model.Verb;
 
 import java.util.Collection;
 
+@Component("verbDatabaseService")
 public class VerbDatabaseService {
 
     private DatabaseConnector connector;
