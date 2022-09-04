@@ -1,28 +1,24 @@
 <template>
-  <div id="app">
-    <img alt="Vue logo" src="./assets/logo.png">
-    <HelloWorld msg="Welcome to Your Vue.js App"/>
-  </div>
+    <div id="app">
+        <h1>Irregular Verbs</h1>
+        <verbs-list :verbs = "verbs"></verbs-list>
+    </div>
 </template>
 
 <script>
-import HelloWorld from './components/HelloWorld.vue'
+    import VerbsList from './components/VerbsList.vue'
 
-export default {
-  name: 'App',
-  components: {
-    HelloWorld
-  }
-}
+    export default {
+        components: {
+            VerbsList
+        },
+        data() {
+            return {
+                verbs: []
+            };
+        }
+    }
 </script>
 
 <style>
-#app {
-  font-family: Avenir, Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  text-align: center;
-  color: #2c3e50;
-  margin-top: 60px;
-}
 </style>
