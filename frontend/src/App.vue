@@ -16,6 +16,20 @@
             return {
                 verbs: []
             };
+        },
+        methods: {
+            getVerbs() {
+                this.$http.get('verbs')
+                    .then(response => {
+                        this.verbs = response.body;
+                    })
+                    .catch(response => {
+                        console.log("Nie udało się pobrać czasowników!" + response.status);
+                    });
+            }
+        },
+        mounted() {
+            this.getVerbs();
         }
     }
 </script>
