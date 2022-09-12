@@ -4,6 +4,9 @@
 # Maven #
 target/
 
+# Node.js #
+backend/src/main/resources/public
+
 # Persistence files #
 irregularverbs.db
 irregularverbs.txt
