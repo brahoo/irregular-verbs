@@ -8,5 +8,5 @@ target/
 backend/src/main/resources/public
 
 # Persistence files #
-irregularverbs.db
+#irregularverbs.db
 irregularverbs.txt
