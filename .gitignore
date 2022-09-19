@@ -7,6 +7,9 @@ target/
 # Node.js #
 backend/src/main/resources/public
 
+# Environment variables file
+.env
+
 # Persistence files #
 #irregularverbs.db
 irregularverbs.txt
