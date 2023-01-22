@@ -45,6 +45,7 @@ public class Exercise {
             throw new IllegalStateException("Exercise must be not completed");
         } else {
             this.points++;
+            getCurrentPractice().setPassed(true);
         }
     }
 

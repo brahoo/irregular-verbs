@@ -10,6 +10,7 @@ import java.util.List;
 
 import static org.junit.Assert.*;
 import static org.mockito.Mockito.mock;
+import static org.mockito.Mockito.verify;
 
 @RunWith(SpringRunner.class)
 public class ExerciseTest {
@@ -71,6 +72,7 @@ public class ExerciseTest {
     public void testSetPointsInProgress() {
         exercise.addPoint();
         assertEquals(1, exercise.getPoints());
+        verify(testPractice1).setPassed(true);
     }
 
     @Test(expected = IllegalStateException.class)
