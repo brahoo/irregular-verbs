@@ -8,6 +8,7 @@ import pogorzelec.irregularverbs.persistence.database.VerbDatabaseService;
 import java.util.Collection;
 import java.util.List;
 
+@Component("exerciser")
 public class Exerciser {
 
     @Autowired
@@ -25,6 +26,7 @@ public class Exerciser {
         Collection<Verb> verbs = verbDatabaseService.getAll();
         Collection<Practice> practices = practicesGenerator.generate((List<Verb>)verbs, quantity);
         Exercise exercise = new Exercise((List<Practice>)practices);
+        this.exercise = exercise;
     }
 
     public Exercise getExercise() {
