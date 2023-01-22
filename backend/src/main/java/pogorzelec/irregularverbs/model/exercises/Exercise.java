@@ -1,27 +1,62 @@
 package pogorzelec.irregularverbs.model.exercises;
 
-import pogorzelec.irregularverbs.model.Verb;
-
-import java.util.Objects;
+import java.util.List;
 
 public class Exercise {
 
-    private Verb verb;
+    private List<Practice> practices;
+    private int currentPracticeIndex;
+    private boolean isFinished;
+    private int points;
 
-    public Exercise(Verb verb) {
-        this.verb = verb;
+    public Exercise(List<Practice> practices) {
+        this.practices = practices;
+        this.currentPracticeIndex = 0;
+        this.isFinished = false;
+        this.points = 0;
     }
 
-    @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-        if (!(o instanceof Exercise)) return false;
-        Exercise exercise = (Exercise) o;
-        return Objects.equals(verb, exercise.verb);
+    public Practice getCurrentPractice() {
+        return practices.get(currentPracticeIndex);
     }
 
-    @Override
-    public int hashCode() {
-        return Objects.hash(verb);
+    public void setCurrentPracticeOrSetFinished() {
+        if (isFinished()) {
+            throw new IllegalStateException("Exercise is already finished");
+        }
+        if (isCurrentPracticeIsLast()) {
+            this.setFinished(true);
+        }
+        else {
+            setCurrentPracticeFromNext();
+        }
+    }
+
+    public boolean isFinished() {
+        return isFinished;
+    }
+
+    public int getPoints() {
+        return points;
+    }
+
+    public void addPoint() {
+        if (isFinished()) {
+            throw new IllegalStateException("Exercise must be not completed");
+        } else {
+            this.points++;
+        }
+    }
+
+    private boolean isCurrentPracticeIsLast() {
+        return currentPracticeIndex >= practices.size()-1;
+    }
+
+    private void setFinished(boolean arg) {
+        this.isFinished = arg;
+    }
+
+    private void setCurrentPracticeFromNext() {
+        currentPracticeIndex++;
     }
 }

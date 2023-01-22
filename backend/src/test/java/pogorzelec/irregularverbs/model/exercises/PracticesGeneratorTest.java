@@ -13,14 +13,14 @@ import java.util.Collection;
 import java.util.List;
 
 @RunWith(SpringRunner.class)
-public class ExercisesGeneratorTest {
+public class PracticesGeneratorTest {
 
-    private ExercisesGenerator exercisesGenerator;
+    private PracticesGenerator practicesGenerator;
     private List<Verb> testVerbs;
 
     @Before
     public void setUp() {
-        exercisesGenerator = new ExercisesGenerator();
+        practicesGenerator = new PracticesGenerator();
         testVerbs = new ArrayList<>();
         testVerbs.add(new Verb ("do","did", "done"));
         testVerbs.add(new Verb ("be", "was", "been"));
@@ -32,46 +32,54 @@ public class ExercisesGeneratorTest {
 
     @Test(expected = IllegalArgumentException.class)
     public void testGeneratingFromNullVerbList() {
-        exercisesGenerator.generate(null,3);
+        practicesGenerator.generate(null,3);
     }
 
     @Test(expected = IllegalArgumentException.class)
     public void testGeneratingFromEmptyVerbList() {
         List<Verb> emptyTestVerbs = new ArrayList<>();
-        exercisesGenerator.generate(emptyTestVerbs, 3);
+        practicesGenerator.generate(emptyTestVerbs, 3);
     }
 
     @Test(expected = IllegalArgumentException.class)
     public void testGeneratingZeroQuantity() {
-        exercisesGenerator.generate(testVerbs,0);
+        practicesGenerator.generate(testVerbs,0);
     }
 
     @Test(expected = IllegalArgumentException.class)
     public void testGeneratingNegativeQuantity() {
-        exercisesGenerator.generate(testVerbs,-1);
+        practicesGenerator.generate(testVerbs,-1);
     }
 
     @Test
-    public void testQuantityOfGeneratedExercisesIsCorrect() {
-        Collection<Exercise> testExercises;
-        testExercises = exercisesGenerator.generate(testVerbs, 3);
+    public void testQuantityOfGeneratedPracticesIsCorrect() {
+        Collection<Practice> testPractices;
+        testPractices = practicesGenerator.generate(testVerbs, 3);
         
-        assertEquals(3, testExercises.size());
+        assertEquals(3, testPractices.size());
     }
 
     @Test
     public void testGeneratingWithDefaultQuantity() {
-        Collection<Exercise> testExercises;
-        testExercises = exercisesGenerator.generate(testVerbs);
+        Collection<Practice> testPractices;
+        testPractices = practicesGenerator.generate(testVerbs);
 
-        assertEquals(1, testExercises.size());
+        assertEquals(1, testPractices.size());
     }
 
     @Test
     public void testAnotherGenerationIsDifferent() {
-        List<Exercise> testExercises = (List<Exercise>) exercisesGenerator.generate(testVerbs,3);
-        List<Exercise> anotherExercises = (List<Exercise>) exercisesGenerator.generate(testVerbs,3);
+        List<Practice> testPractices = (List<Practice>) practicesGenerator.generate(testVerbs,3);
+        List<Practice> anotherPractices = (List<Practice>) practicesGenerator.generate(testVerbs,3);
 
-        assertNotEquals(testExercises, anotherExercises);
+        assertNotEquals(testPractices, anotherPractices);
+    }
+
+    @Test
+    public void testQuantityOfGeneratedPracticesIsCorrectWhenQuantityIsGreaterThanVerbListLength() {
+        Collection<Practice> testPractices;
+        testPractices = practicesGenerator.generate(testVerbs, 20);
+
+        assertEquals(20, testPractices.size());
     }
 }

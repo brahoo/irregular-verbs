@@ -1,7 +1,10 @@
 package pogorzelec.irregularverbs.model.exercises;
 
 import pogorzelec.irregularverbs.model.Verb;
+import org.springframework.stereotype.Component;
+import pogorzelec.irregularverbs.model.Verb;
 
+@Component("answerChecker")
 public class AnswerChecker {
 
     public boolean check(Verb verb, Answer answer) {
