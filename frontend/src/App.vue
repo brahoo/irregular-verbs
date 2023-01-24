@@ -1,37 +1,27 @@
 <template>
     <div id="app">
-        <h1>Irregular Verbs</h1>
-        <verbs-list :verbs = "verbs"></verbs-list>
+        <h1>Irregular Verbs - Main Page</h1>
+        <a @click="currentView = ''">Main Page</a>
+        | 
+        <a @click="currentView = 'verbs'">Verbs</a>
+        <div v-if="currentView == 'verbs'">
+            <verbs-view></verbs-view>            
+        </div>
+        <div v-else></div>
     </div>
 </template>
 
 <script>
-    import VerbsList from './components/VerbsList.vue'
+    import VerbsView from "./components/VerbsView";
 
     export default {
-        components: {
-            VerbsList
-        },
+        components: {VerbsView},
         data() {
             return {
-                verbs: []
+                currentView: ""
             };
-        },
-        methods: {
-            getVerbs() {
-                this.$http.get('verbs')
-                    .then(response => {
-                        this.verbs = response.body;
-                    })
-                    .catch(response => {
-                        console.log("Nie udało się pobrać czasowników!" + response.status);
-                    });
-            }
-        },
-        mounted() {
-            this.getVerbs();
         }
-    }
+    };
 </script>
 
 <style>
