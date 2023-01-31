@@ -6,6 +6,7 @@
 </template>
 
 <script>
+    import axios from 'axios'
     import VerbsList from './VerbsList.vue'
 
     export default {
@@ -19,12 +20,13 @@
         },
         methods: {
             getVerbs() {
-                this.$http.get('verbs')
+                axios.get('/api/verbs')
                     .then(response => {
-                        this.verbs = response.body;
+                        this.verbs = response.data;
                     })
-                    .catch(response => {
-                        console.log("Nie udało się pobrać czasowników!" + response.status);
+                    // error cacthing to do
+                    .catch(error => {
+                        console.log(error.response.status + " Nie udało się pobrać czasowników!");
                     });
             }
         },
