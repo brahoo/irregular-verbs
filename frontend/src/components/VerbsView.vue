@@ -24,7 +24,6 @@
                     .then(response => {
                         this.verbs = response.data;
                     })
-                    // error cacthing to do
                     .catch(error => {
                         console.log(error.response.status + " Nie udało się pobrać czasowników!");
                     });
