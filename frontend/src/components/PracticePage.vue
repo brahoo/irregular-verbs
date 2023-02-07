@@ -1,6 +1,6 @@
 <template>
     <div>
-        <practice-form :verb = "this.practice.subject"></practice-form>
+        <practice-form :verb = "this.practice.subject" @answered = "giveAnswer($event)"></practice-form>
     </div>
 </template>
 
@@ -13,6 +13,11 @@
         },
         props: {
             practice: {}
+        },
+        methods: {
+            giveAnswer(answer) {
+                this.$emit('answered', answer);
+            }
         }
     }
 </script>
