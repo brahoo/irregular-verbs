@@ -2,14 +2,21 @@
     <div id="exercises-view">
         <h1>Exercises</h1>
         <h4>Points: {{ exercise.points }}</h4>
-        <practice-page 
-                v-if = "!isAnswered" 
-                :practice = "exercise.currentPractice" 
-                @answered = "checkAnswer($event)"></practice-page>
-        <practice-bar
-                v-else 
-                :isCorectAnswer = "isCorectAnswer"
-                :verb = "exercise.currentPractice.subject"></practice-bar>
+        <div v-if = "!exercise.finished">
+            <practice-page 
+                    v-if = "!isAnswered" 
+                    :practice = "exercise.currentPractice" 
+                    @answered = "checkAnswer($event)"></practice-page>
+            <practice-bar
+                    v-else
+                    :isCorrectAnswer = "isCorrectAnswer"
+                    :verb = "exercise.currentPractice.subject"
+                    @forwarded = "forward()"></practice-bar>
+        </div>
+        <div v-else>
+            <p>Ćwiczenie zakończone.</p>
+            <button @click = "createExercise()">Nowe ćwiczenie</button>
+        </div>
     </div>
 </template>
 
@@ -27,7 +34,7 @@
             return {
                 exercise: {},
                 isAnswered: false,
-                isCorectAnswer: Boolean
+                isCorrectAnswer: Boolean
             }
         },
         methods: {
@@ -43,11 +50,21 @@
             checkAnswer(answer) {
                 axios.put('/api/exercises', answer)
                     .then(response => {
-                        this.isCorectAnswer = response.data;
+                        this.isCorrectAnswer = response.data;
                         this.isAnswered = true;
                     })
                     .catch(error => {
                         console.log(error.response.status + " Nie udało się przesłać odpowiedzi!");
+                    });
+            },
+            forward() {
+                axios.get('/api/exercises')
+                    .then(response => {
+                        this.exercise = response.data;
+                        this.isAnswered = false;
+                    })
+                    .catch(error => {
+                        console.log(error.response.status + " Nie udało się pobrać ćwiczenia!");
                     });
             }
         },
