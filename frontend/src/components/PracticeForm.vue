@@ -5,7 +5,7 @@
             <input type="text" v-model="answer.secondForm">
             <input type="text" v-model="answer.thirdForm">
             <button>Sprawdź</button>
-            <span v-if="error">Podaj obie formy</span>
+            <p v-if="error">Podaj obie formy</p>
         </form>
     </div>
 </template>
@@ -17,7 +17,8 @@
         },
         data() {
             return {
-                answer: {secondForm: "", thirdForm: ""}
+                answer: {secondForm: "", thirdForm: ""},
+                error : false
             }
         },
         methods: {
@@ -28,7 +29,7 @@
                     this.answer = {};
                 }
                 else{
-                    console.log("Oba pola odpowiedzi muszą być wypełnione!")
+                    this.error = true;
                 }
             },
             checkAnswerDataCorrectness() {

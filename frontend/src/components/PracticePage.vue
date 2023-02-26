@@ -1,6 +1,6 @@
 <template>
     <div>
-        <practice-form :verb = "this.practice.subject" @answered = "giveAnswer($event)"></practice-form>
+        <practice-form :verb = "verb" @answered = "giveAnswer($event)"></practice-form>
     </div>
 </template>
 
@@ -12,7 +12,7 @@
             PracticeForm
         },
         props: {
-            practice: {}
+            verb: {}
         },
         methods: {
             giveAnswer(answer) {

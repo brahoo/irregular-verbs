@@ -1,8 +1,8 @@
 <template>
     <div id="app">
         <h1 id="app-title">IRREGULAR VERBS</h1>
-        <a @click="currentView = ''">Main Page</a>|
-        <a @click="currentView = 'verbs'">Verbs</a>|
+        <a @click="currentView = ''">Main Page</a> |
+        <a @click="currentView = 'verbs'">Verbs</a> |
         <a @click="currentView = 'exercises'">Exercises</a>
         <div v-if="currentView == 'verbs'">
             <verbs-view></verbs-view>            

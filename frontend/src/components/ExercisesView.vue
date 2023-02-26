@@ -5,12 +5,12 @@
         <div v-if = "!exercise.finished">
             <practice-page 
                     v-if = "!isAnswered" 
-                    :practice = "exercise.currentPractice" 
+                    :verb = "verb"
                     @answered = "checkAnswer($event)"></practice-page>
             <practice-bar
                     v-else
                     :isCorrectAnswer = "isCorrectAnswer"
-                    :verb = "exercise.currentPractice.subject"
+                    :verb = "verb"
                     @forwarded = "forward()"></practice-bar>
         </div>
         <div v-else>
@@ -33,6 +33,8 @@
         data() {
             return {
                 exercise: {},
+                practice: {},
+                verb: {},
                 isAnswered: false,
                 isCorrectAnswer: Boolean
             }
@@ -42,6 +44,8 @@
                 axios.get('/api/exercises/new')
                     .then(response => {
                         this.exercise = response.data;
+                        this.practice = this.exercise.currentPractice;
+                        this.verb = this.practice.subject;
                     })
                     .catch(error => {
                         console.log(error.response.status + " Nie udało się pobrać ćwiczenia!");
@@ -61,6 +65,8 @@
                 axios.get('/api/exercises')
                     .then(response => {
                         this.exercise = response.data;
+                        this.practice = this.exercise.currentPractice;
+                        this.verb = this.practice.subject;
                         this.isAnswered = false;
                     })
                     .catch(error => {
