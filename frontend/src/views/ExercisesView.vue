@@ -3,10 +3,10 @@
         <h1>Exercises</h1>
         <h4>Points: {{ exercise.points }}</h4>
         <div v-if = "!exercise.finished">
-            <practice-page 
+            <practice-form 
                     v-if = "!isAnswered" 
                     :verb = "verb"
-                    @answered = "checkAnswer($event)"></practice-page>
+                    @answered = "checkAnswer($event)"></practice-form>
             <practice-bar
                     v-else
                     :isCorrectAnswer = "isCorrectAnswer"
@@ -23,12 +23,12 @@
 <script>
     import axios from 'axios'
     import PracticeBar from '../components/PracticeBar.vue'
-    import PracticePage from '../components/PracticePage.vue'
+    import PracticeForm from '../components/PracticeForm.vue'
     
     export default {
         components: {
             PracticeBar,
-            PracticePage
+            PracticeForm
         },
         data() {
             return {
