@@ -22,8 +22,8 @@
 
 <script>
     import axios from 'axios'
-    import PracticeBar from './PracticeBar.vue'
-    import PracticePage from './PracticePage.vue'
+    import PracticeBar from '../components/PracticeBar.vue'
+    import PracticePage from '../components/PracticePage.vue'
     
     export default {
         components: {

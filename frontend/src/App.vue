@@ -1,31 +1,25 @@
 <template>
     <div id="app">
         <h1 id="app-title">IRREGULAR VERBS</h1>
-        <a @click="currentView = ''">Main Page</a> |
-        <a @click="currentView = 'verbs'">Verbs</a> |
-        <a @click="currentView = 'exercises'">Exercises</a>
-        <div v-if="currentView == 'verbs'">
-            <verbs-view></verbs-view>            
-        </div>
-        <div v-if="currentView == 'exercises'">
-            <exercises-view></exercises-view>
-        </div>
-        <div v-else></div>
+
+        <router-link to = "/">Home</router-link> |
+        <router-link to = "/verbs">Verbs</router-link> |
+        <router-link to = "/exercises">Exercises</router-link>
+
+        <router-view></router-view>
     </div>
 </template>
 
 <script>
-    import VerbsView from "./components/VerbsView";
-    import ExercisesView from "./components/ExercisesView";
+    import {RouterView, RouterLink} from "vue-router"
 
     export default {
-        components: {VerbsView, ExercisesView},
-        data() {
-            return {
-                currentView: ""
-            };
+        components: {
+            RouterView,
+            RouterLink
         }
-    };
+    }
+
 </script>
 
 <style>

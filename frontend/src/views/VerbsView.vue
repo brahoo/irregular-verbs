@@ -7,7 +7,7 @@
 
 <script>
     import axios from 'axios'
-    import VerbsList from './VerbsList.vue'
+    import VerbsList from '../components/VerbsList.vue'
 
     export default {
         components: {
