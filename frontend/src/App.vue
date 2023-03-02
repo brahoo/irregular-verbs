@@ -1,25 +1,20 @@
 <template>
     <div id="app">
-        <h1 id="app-title">IRREGULAR VERBS</h1>
-
-        <router-link to = "/">Home</router-link> |
-        <router-link to = "/verbs">Verbs</router-link> |
-        <router-link to = "/exercises">Exercises</router-link>
-
+        <base-header></base-header>
         <router-view></router-view>
     </div>
 </template>
 
 <script>
-    import {RouterView, RouterLink} from "vue-router"
+    import {RouterView} from "vue-router"
+    import BaseHeader from "./components/BaseHeader.vue"
 
     export default {
         components: {
             RouterView,
-            RouterLink
+            BaseHeader
         }
     }
-
 </script>
 
 <style>
@@ -34,12 +29,4 @@
         margin-right: auto;
         width: 1000px;
     }   
-
-    #app-title {
-        margin-bottom: 5px;
-        font-size: 44px;
-        font-weight: 900;
-        letter-spacing: 4px;
-        text-align: justify;
-    }
 </style>

@@ -1,19 +1,19 @@
 <template>
     <div>
-        <router-link to = "/" id="app-title">IRREGULAR VERBS</router-link><br/>
+        <router-link to="/" id="app-title">IRREGULAR VERBS</router-link><br/>
         <div class="line"></div>
-        <router-link to = "/">Home</router-link> |
-        <router-link to = "/verbs">Verbs</router-link> |
-        <router-link to = "/exercises">Exercises</router-link>
+        <base-nav></base-nav>
     </div>
 </template>
 
 <script>
     import {RouterLink} from "vue-router"
+    import BaseNav from "./BaseNav.vue"
 
     export default {
         components: {
-            RouterLink
+            RouterLink,
+            BaseNav
         }
     }
 </script>
