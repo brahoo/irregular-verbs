@@ -1,17 +1,27 @@
 <template>
     <div id="exercises-view">
         <h1>Exercises</h1>
+        <base-notification
+            v-if="message"
+            :message="message"
+            :isError="isError"
+        >
+        </base-notification>
         <h4>Points: {{ exercise.points }}</h4>
         <div v-if = "!exercise.finished">
             <practice-form 
-                    v-if = "!isAnswered" 
-                    :verb = "verb"
-                    @answered = "checkAnswer($event)"></practice-form>
+                v-if = "!isAnswered" 
+                :verb = "verb"
+                @answered = "checkAnswer($event)"
+            >
+            </practice-form>
             <practice-bar
-                    v-else
-                    :isCorrectAnswer = "isCorrectAnswer"
-                    :verb = "verb"
-                    @forwarded = "forward()"></practice-bar>
+                v-else
+                :isCorrectAnswer = "isCorrectAnswer"
+                :verb = "verb"
+                @forwarded = "forward()"
+            >
+            </practice-bar>
         </div>
         <div v-else>
             <p>Ćwiczenie zakończone.</p>
@@ -24,11 +34,13 @@
     import axios from 'axios'
     import PracticeBar from '../components/PracticeBar.vue'
     import PracticeForm from '../components/PracticeForm.vue'
+    import BaseNotification from '@/components/BaseNotification.vue'
     
     export default {
         components: {
             PracticeBar,
-            PracticeForm
+            PracticeForm,
+            BaseNotification: BaseNotification
         },
         data() {
             return {
@@ -36,7 +48,9 @@
                 practice: {},
                 verb: {},
                 isAnswered: false,
-                isCorrectAnswer: Boolean
+                isCorrectAnswer: Boolean,
+                isError: false,
+                message: ""
             }
         },
         methods: {
@@ -48,7 +62,7 @@
                         this.verb = this.practice.subject;
                     })
                     .catch(error => {
-                        console.log(error.response.status + " Nie udało się pobrać ćwiczenia!");
+                        this.failure(error.response.status + " Nie udało się pobrać ćwiczenia!");
                     });
             },
             checkAnswer(answer) {
@@ -58,7 +72,7 @@
                         this.isAnswered = true;
                     })
                     .catch(error => {
-                        console.log(error.response.status + " Nie udało się przesłać odpowiedzi!");
+                        this.failure(error.response.status + " Nie udało się przesłać odpowiedzi!");
                     });
             },
             forward() {
@@ -70,8 +84,12 @@
                         this.isAnswered = false;
                     })
                     .catch(error => {
-                        console.log(error.response.status + " Nie udało się pobrać ćwiczenia!");
+                        this.failure(error.response.status + " Nie udało się pobrać ćwiczenia!");
                     });
+            },
+            failure(message) {
+                this.message = message;
+                this.isError = true;
             }
         },
         mounted() {
