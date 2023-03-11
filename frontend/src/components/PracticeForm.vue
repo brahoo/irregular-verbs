@@ -78,7 +78,7 @@
         border: none;
     }
 
-    .practice-form > button:hover button:focus {
+    .practice-form > button:hover {
         outline: none;
         background-color: #FFC622;
         color: #222242;
@@ -89,5 +89,4 @@
         background-color: #FFC622;
         color: #222242;
     }
-
 </style>
