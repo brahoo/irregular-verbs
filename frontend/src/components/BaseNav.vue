@@ -53,4 +53,8 @@
         padding-left: 0;
         border-left: none;
     }
+
+    .nav-item:hover {
+        color: #FFC622;
+    }
 </style>
