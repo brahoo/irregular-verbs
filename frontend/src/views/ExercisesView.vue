@@ -7,7 +7,7 @@
             :isError="isError"
         >
         </base-notification>
-        <h4>Points: {{ exercise.points }}</h4>
+        <div class="points-bar">Points: {{ exercise.points }}</div>
         <div v-if = "!exercise.finished">
             <practice-form 
                 v-if = "!isAnswered" 
@@ -23,7 +23,7 @@
             >
             </practice-bar>
         </div>
-        <div v-else>
+        <div class="ending-bar" v-else>
             <p>Ćwiczenie zakończone.</p>
             <button @click = "createExercise()">Nowe ćwiczenie</button>
         </div>
@@ -99,4 +99,41 @@
 </script>
 
 <style>
+    .points-bar {
+        text-align: right;
+        font-size: 30px;
+    }
+    
+    .ending-bar {
+        text-align: center;
+        font-size: 20px;
+    }
+
+    .ending-bar > button {
+        margin-left: auto;
+        margin-right: auto;
+        margin-top: 15px;
+        margin-bottom: 5px;
+        width: auto;
+        padding: 3px;
+        background-color: #EEA400;
+        color: #000020;
+        text-align: center;
+        font-size: 20px;
+        font-weight: 500;
+        letter-spacing: 1px;
+        border: none;
+    }
+
+    .ending-bar > button:hover {
+        outline: none;
+        background-color: #FFC622;
+        color: #222242;
+    }
+
+    .ending-bar > button:focus {
+        outline: none;
+        background-color: #FFC622;
+        color: #222242;
+    }
 </style>
